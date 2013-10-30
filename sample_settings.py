@@ -1,0 +1,5 @@
+NUM = ''
+XML_LOC = ''
+XML_URL = ''
+ACCOUNT_SID = ''
+AUTH_TOKEN = ''
