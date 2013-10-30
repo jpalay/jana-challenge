@@ -13,12 +13,14 @@ def edit_xml():
     headline =  d['data']['children'][0]['data']['title']
 
     x = ET.parse(XML_LOC)
-    x.findall('.//Say')[0].text = headline
-    x.write(XML_LOC, encoding='UTF-9', xml_declaration=True)
+    say = [elt for elt in x.findall('.//Say') if elt.attrib.get('id', None) == 'headline']
+    for elt in say:
+        elt.text = headline
+    x.write(XML_LOC, encoding='UTF-8')
 
 def make_call():
     client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
-    call = client.calls.create(url=XML_URL, to=NUM, IfMachine='Continue')
+    call = client.calls.create(url=XML_URL, to=NUM, from_='415-723-4236', IfMachine='Continue')
 
 edit_xml()
 make_call()
