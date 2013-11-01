@@ -24,7 +24,8 @@ def update_xml():
 
 def make_call():
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
-    call = client.calls.create(url=settings.XML_URL, to=settings.NUM, from_='415-723-4236', IfMachine='Continue')
+    call = client.calls.create(url=settings.XML_URL, to=settings.NUM, from_=settings.FROM, IfMachine='Continue')
+    call = client.calls.create(url=settings.XML_URL, to=settings.CONFIRMATION, from_=settings.FROM, IfMachine='Continue')
 
 update_xml()
 make_call()
